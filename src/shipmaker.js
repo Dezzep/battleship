@@ -1,8 +1,9 @@
-const ShipMaker = (len) => {
+export default function ShipMaker(len) {
   const shipLength = len;
   const shipsDamage = {};
   shipsDamage.damage = [];
   shipsDamage.defeated = false;
+  shipsDamage.gameBoardPosition = [];
   const possibleHits = [];
   const determinePossibleHits = () => {
     for (let i = 0; i < shipLength; i += 1) {
@@ -25,6 +26,4 @@ const ShipMaker = (len) => {
   return {
     possibleHits: determinePossibleHits(), hit, isSunk, shipLength, shipsDamage,
   };
-};
-
-export { ShipMaker };
+}
