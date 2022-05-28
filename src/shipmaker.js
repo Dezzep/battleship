@@ -1,4 +1,4 @@
-export default function ShipMaker(len) {
+export default function ShipMaker(len, name) {
   const shipLength = len;
   const shipsDamage = {};
   shipsDamage.damage = [];
@@ -24,6 +24,6 @@ export default function ShipMaker(len) {
     isSunk(shipsDamage.damage, shipLength);
   };
   return {
-    possibleHits: determinePossibleHits(), hit, isSunk, shipLength, shipsDamage,
+    possibleHits: determinePossibleHits(), hit, isSunk, shipLength, shipsDamage, name,
   };
 }

@@ -1,39 +1,35 @@
 import ShipMaker from "./shipmaker";
 
 export default function Gameboard() {
-  const Hunley = ShipMaker(3);
+  const ['Hunley'] = ShipMaker(3, 'Hunley');
   console.log(Hunley);
   const tableStatus = {};
-  const createTable = () => {
-    const A = [];
-    const B = [];
-    const C = [];
-    const D = [];
-    const E = [];
-    const F = [];
-    const G = [];
-    const H = [];
-    const I = [];
-    const J = [];
-    const alpha = [A, B, C, D, E, F, G, H, I, J];
-    alpha.forEach((element) => {
-      for (let i = 0; i < 10; i += 1) {
-        element.push(i + 1);
-      }
-    });
-    return alpha;
+  const createTable = {
+    A: [],
+    B: [],
+    C: [],
+    D: [],
+    E: [],
+    F: [],
+    G: [],
+    H: [],
+    I: [],
+    J: [],
   };
-  tableStatus.tableLayout = createTable();
-  
-  const determineShipsPositionOnGameBoard = (ship, alphaCoord, numericCoord) => {
+  Object.values(createTable).forEach((key) => {
+    for (let i = 0; i < 10; i += 1) {
+      key.push(i + 1);
+    }
+  });
+  // because this mutates an object directly, it's important to test.
+  const determineShipsPositionOnGameBoard = (ship, objKey, numericCoord) => {
     // for now just horizantal placement.
     for (let i = 0; i < ship.possibleHits.length; i += 1) {
-      ship.shipsDamage.gameBoardPosition.push(alphaCoord, numericCoord + i);
+      objKey[numericCoord + i] = `${ship.name}${i}`;
     }
   };
-  determineShipsPositionOnGameBoard(Hunley, 1, 1);
- console.log(Hunley.shipsDamage.gameBoardPosition);
-
+  determineShipsPositionOnGameBoard(Hunley, createTable.A, 1);
+  console.log(Hunley.shipsDamage.gameBoardPosition);
 
   const addShipToTable = (ship) => {
 
@@ -41,5 +37,6 @@ export default function Gameboard() {
 
   return {
     tableStatus,
+    createTable,
   };
 }

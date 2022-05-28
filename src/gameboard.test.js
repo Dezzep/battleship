@@ -3,12 +3,22 @@ import Gameboard from './gameboard';
 
 const sea = Gameboard();
 test('A ship can be inserted on the grid', () => {
-  expect(sea.tableStatus.tableLayout[1][1]).toBe(Hunley.possibleHits[0]);
+  expect(sea.createTable.A[1]).toBe('Hunley0');
 });
 
 test('Gameboard is a 10x10 grid', () => {
-  expect(sea.tableStatus.tableLayout.length * sea.tableStatus.tableLayout[9].length).toBe(100);
-  console.log(sea.tableStatus.tableLayout[9][9])
+  expect(sea.createTable.J.length).toBe(10);
+  expect(sea.createTable.A.length).toBe(10);
+  expect(sea.createTable.B.length).toBe(10);
+  expect(sea.createTable.C.length).toBe(10);
+  expect(sea.createTable.D.length).toBe(10);
+  expect(sea.createTable.E.length).toBe(10);
+  expect(sea.createTable.F.length).toBe(10);
+  expect(sea.createTable.G.length).toBe(10);
+  expect(sea.createTable.H.length).toBe(10);
+  expect(sea.createTable.I.length).toBe(10);
+  console.log(sea.createTable);
+  expect(Object.keys(sea.createTable).length).toBe(10);
 });
 
 test('Gameboard exists', () => {
