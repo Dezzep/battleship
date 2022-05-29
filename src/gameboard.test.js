@@ -3,7 +3,7 @@ import Gameboard from './gameboard';
 
 const sea = Gameboard();
 test('A ship can be inserted on the grid', () => {
-  expect(sea.createTable.A[1]).toBe('Hunley0');
+  expect(sea.createTable.A[1]).toBe('Cruiser0');
 });
 
 test('Gameboard is a 10x10 grid', () => {

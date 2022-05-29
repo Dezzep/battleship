@@ -1,9 +1,13 @@
 import ShipMaker from "./shipmaker";
 
 export default function Gameboard() {
-  const ['Hunley'] = ShipMaker(3, 'Hunley');
-  console.log(Hunley);
+  const carrier = ShipMaker(5, 'Carrier');
+  const battleship = ShipMaker(4, 'Battleship');
+  const submarine = ShipMaker(3, 'Submarine');
+  const cruiser = ShipMaker(3, 'Cruiser');
+  const destroyer = ShipMaker(2, 'Destroyer');
   const tableStatus = {};
+  const shipPieces = [carrier, battleship, submarine, cruiser, destroyer];
   const createTable = {
     A: [],
     B: [],
@@ -28,8 +32,8 @@ export default function Gameboard() {
       objKey[numericCoord + i] = `${ship.name}${i}`;
     }
   };
-  determineShipsPositionOnGameBoard(Hunley, createTable.A, 1);
-  console.log(Hunley.shipsDamage.gameBoardPosition);
+  determineShipsPositionOnGameBoard(shipPieces[3], createTable.A, 1);
+  console.log(shipPieces[3].shipsDamage.gameBoardPosition);
 
   const addShipToTable = (ship) => {
 
