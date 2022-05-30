@@ -7,7 +7,7 @@ export default function ShipMaker(len, name) {
   const possibleHits = [];
   const determinePossibleHits = () => {
     for (let i = 0; i < shipLength; i += 1) {
-      possibleHits.push(i);
+      possibleHits.push(name + i);
     }
     return possibleHits;
   };

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import ShipMaker from './shipmaker';
 
-const coolBattleShip = ShipMaker(3, 1, 1);
+const coolBattleShip = ShipMaker(3, 'ship');
 afterEach(() => {
   coolBattleShip.shipsDamage.damage = [];
 });
@@ -24,6 +24,6 @@ test('hit function pushes to damage array', () => {
   expect(coolBattleShip.shipsDamage.damage).toStrictEqual([2]);
 });
 test('possible hits is [0 1 2]', () => {
-  const arr = [0, 1, 2];
+  const arr = ['ship0', 'ship1', 'ship2'];
   expect(coolBattleShip.possibleHits).toStrictEqual(arr);
 });
