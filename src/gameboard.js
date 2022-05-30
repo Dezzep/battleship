@@ -1,12 +1,12 @@
 import ShipMaker from './shipmaker';
 
 export default function Gameboard() {
-  const carrier = ShipMaker(5, 'Carrier');
-  const battleship = ShipMaker(4, 'Battleship');
-  const submarine = ShipMaker(3, 'Submarine');
-  const cruiser = ShipMaker(3, 'Cruiser');
-  const destroyer = ShipMaker(2, 'Destroyer');
-  const hitsAndMisses = {};
+  const carrier = ShipMaker(5, 'carrier');
+  const battleship = ShipMaker(4, 'battleship');
+  const submarine = ShipMaker(3, 'submarine');
+  const cruiser = ShipMaker(3, 'cruiser');
+  const destroyer = ShipMaker(2, 'destroyer');
+  const hitsAndMisses = [];
   const shipPieces = [carrier, battleship, submarine, cruiser, destroyer];
   const table = {
     A: [],
@@ -51,10 +51,34 @@ export default function Gameboard() {
     setShipsPositionOnGameBoard(ship, objKey, numericCoord);
     return 0;
   };
+  const searchForObjectBasedOnNameAndReturnObject = (nameOfObject) => {
+    let obj;
+    shipPieces.forEach((element) => {
+      if (element.name === nameOfObject) {
+        obj = element;
+        return 0;
+      }
+      return 0;
+    });
+    return obj;
+  };
   const receiveAttack = (objKey, xCoord) => {
+    let shipName = objKey[xCoord];
+    const coords = `x:${xCoord} y:${objKey[xCoord]}`;
+    if (hitsAndMisses.includes(coords)) { return 1; } // disallows duplicate fires
+    hitsAndMisses.push(coords);
     if (objKey[xCoord].length > 1) {
+      const hasNumber = /\d/;
+      let hitNumber = '';
+      if (hasNumber.test(shipName)) {
+        hitNumber = shipName.slice(-1);
+        shipName = shipName.slice(0, -1);
+      }
+      const shipsObject = searchForObjectBasedOnNameAndReturnObject(shipName);
+      shipsObject.hit(hitNumber);
       return 'hit';
-    } return 'miss';
+    }
+    return 'miss';
   };
   return {
     hitsAndMisses,

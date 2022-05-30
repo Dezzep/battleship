@@ -5,6 +5,26 @@ let sea = Gameboard();
 afterEach(() => {
   sea = Gameboard();
 });
+test('Expect duplicate hits to return 1 (not do anything)', () => {
+  sea.addShipToTable(sea.shipPieces[1], sea.table.C, 0);
+  sea.receiveAttack(sea.table.A, 0);
+  sea.receiveAttack(sea.table.A, 0);
+  expect(sea.receiveAttack(sea.table.A, 0)).toBe(1);
+});
+
+test('Expect ship to sink if all parts of ship are hit', () => {
+  sea.addShipToTable(sea.shipPieces[2], sea.table.C, 5);
+  sea.receiveAttack(sea.table.C, 6);
+  sea.receiveAttack(sea.table.C, 5);
+  sea.receiveAttack(sea.table.C, 7);
+  expect(sea.shipPieces[2].shipsDamage.defeated).toBeTruthy();
+});
+
+test('Expect a hit attack to record a ships damage', () => {
+  sea.addShipToTable(sea.shipPieces[2], sea.table.C, 5);
+  sea.receiveAttack(sea.table.C, 6);
+  expect(sea.shipPieces[2].shipsDamage.damage.length).toBe(1);
+});
 
 test('Incoming attack reports hit on hit', () => {
   sea.addShipToTable(sea.shipPieces[2], sea.table.B, 3);
@@ -25,7 +45,7 @@ test('A new ship cannot be placed where another ship already is', () => {
 
 test('A ship can be inserted on the grid', () => {
   sea.addShipToTable(sea.shipPieces[3], sea.table.A, 1);
-  expect(sea.table.A[1]).toBe('Cruiser0');
+  expect(sea.table.A[1]).toBe('cruiser0');
 });
 
 test('Gameboard is a 10x10 grid', () => {
