@@ -1,3 +1,26 @@
 body{
-  background-color: black;
+  background-color: #3f3f3f;
 }
+
+#players-game-board{
+  display:grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  width:50em;
+  height:50em;
+
+  .A, 
+  .B,
+  .C,
+  .D,
+  .E,
+  .F,
+  .G,
+  .H,
+  .I,
+  .J{
+    background-color: #fff;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+

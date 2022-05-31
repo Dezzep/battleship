@@ -14,12 +14,12 @@ beforeEach(() => {
   ai = Player(player2Board, player1Board);
   MutateTurnTo0();
 });
-test('player is aware that they landed a hit', () => {
+test('When the player fires and lands a hit, the string: "hit" is returned ', () => {
   player2Board.addShipToTable(player2Board.shipPieces[2], player2Board.table.C, 5);
   expect(human.attackEnemy(human.enemyBoard.table.C, 5)).toBe('hit');
 });
 
-test('player can attack after enemy attacks succesfully', () => {
+test('When the player attacks and then the ai attacks, the player can attack again', () => {
   human.attackEnemy(human.enemyBoard.table.A, 2);
   expect(human.enemyBoard.hitsAndMisses.length).toBe(1);
   expect(human.attackEnemy(human.enemyBoard.table.A, 4)).toBeTruthy();
@@ -31,10 +31,10 @@ test('player can not attack if it is not their turn', () => {
   expect(ai.attackEnemy(ai.enemyBoard.table.A, 1)).toBe(1);
   expect(human.attackEnemy(human.enemyBoard.table.A, 1)).toBeTruthy();
 });
-test('attack is registered in right spot', () => {
+test('A players attack is registered in the hitsAndMisses array', () => {
   human.attackEnemy(human.enemyBoard.table.A, 2);
   expect(human.enemyBoard.hitsAndMisses).toStrictEqual(["A2"]);
 });
-test('player1 board different than player2', () => {
+test('Both Players have different objects as boards.', () => {
   expect(human.board === ai.board).toBeFalsy();
 });

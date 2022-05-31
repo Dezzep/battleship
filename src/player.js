@@ -49,7 +49,8 @@ function Player(playerBoard, opposingBoard) {
         } else {
           const groupedCoords = botAttack();
           board.receiveAttack(groupedCoords.y, groupedCoords.x);
-          whosTurnIsIt = 0; }
+          whosTurnIsIt = 0;
+        }
         if (shotFired === 'hit') {
           return ('hit');
         }
