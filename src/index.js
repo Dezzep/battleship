@@ -24,19 +24,37 @@ console.log(player1Board);
 console.log(aiBoard);
 
 const createPlayerBoard = (DivID) => {
+  // creates the grid along with the alphebetical Y axis and the numerical X axis.
   const boardDiv = document.createElement('div');
-  const lettersForColumns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+  const lettersForColumns = ['numbers', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
   boardDiv.id = DivID;
-  lettersForColumns.forEach((element) => {
+  lettersForColumns.forEach((element, i) => {
     const createChildDiv = document.createElement('div');
     createChildDiv.className = `column ${element}`;
     boardDiv.append(createChildDiv);
     lettersForColumns.forEach((e, index) => {
       const createGrandChildDiv = document.createElement('div');
-      createGrandChildDiv.className = index;
+      if (i === 0) {
+        if (index !== 0) {
+          createGrandChildDiv.innerText = index;
+        }
+        createGrandChildDiv.className = 'numbers';
+      }
+      if (index - 1 === -1) {
+        createGrandChildDiv.className = 'identify';
+        if (element !== 'numbers') {
+          createGrandChildDiv.innerText = element;
+        }
+      } else if (createGrandChildDiv.className !== 'numbers') {
+        createGrandChildDiv.className = index - 1;
+      }
       createChildDiv.append(createGrandChildDiv);
     });
   });
   document.body.append(boardDiv);
 };
-createPlayerBoard('players-game-board');
+
+const prettyMuchDoEverythingDomRelatedAllAtOnceInANiceAndDescriptiveFunctionThatMightBeAFunctionThatsJustTurningIntoAJoke = () => {
+  createPlayerBoard('players-game-board');
+};
+prettyMuchDoEverythingDomRelatedAllAtOnceInANiceAndDescriptiveFunctionThatMightBeAFunctionThatsJustTurningIntoAJoke();

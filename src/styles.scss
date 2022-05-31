@@ -4,10 +4,17 @@ body{
 
 #players-game-board{
   display:grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows:  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   width:50em;
   height:50em;
+  
+  .numbers{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 
+  .letters,
   .A, 
   .B,
   .C,
@@ -18,9 +25,16 @@ body{
   .H,
   .I,
   .J{
-    background-color: #fff;
+    background-color: rgba(47, 70, 202, 0.489);
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    div {
+      border:1px solid black;
+
+      &:hover{
+        background-color: rgba(46, 69, 201, 0.350);
+      }
+    }
   }
 }
 
