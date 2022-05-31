@@ -8,7 +8,7 @@ afterEach(() => {
 test('Expect duplicate hits to return 1 (not do anything)', () => {
   sea.addShipToTable(sea.shipPieces[1], sea.table.C, 0);
   sea.receiveAttack(sea.table.A, 0);
-  sea.receiveAttack(sea.table.A, 0);
+  sea.receiveAttack(sea.table.B, 9);
   expect(sea.receiveAttack(sea.table.A, 0)).toBe(1);
 });
 
@@ -59,7 +59,6 @@ test('Gameboard is a 10x10 grid', () => {
   expect(sea.table.G.length).toBe(10);
   expect(sea.table.H.length).toBe(10);
   expect(sea.table.I.length).toBe(10);
-  console.log(sea.table);
   expect(Object.keys(sea.table).length).toBe(10);
 });
 

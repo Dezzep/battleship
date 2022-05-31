@@ -38,13 +38,11 @@ export default function Gameboard() {
     // ensure ship does not overflow on grid
     const spanOfShip = ship.shipLength;
     if (numericCoord + ship.shipLength > 10) {
-      console.log('invalid location');
       return 1;
     }
     // ensure no ship overlap/collision
     for (let i = numericCoord; i < numericCoord + spanOfShip; i += 1) {
       if (objKey[i].length > 1) {
-        console.log("there's already a ship here!");
         return 1;
       }
     }
@@ -64,7 +62,28 @@ export default function Gameboard() {
   };
   const receiveAttack = (objKey, xCoord) => {
     let shipName = objKey[xCoord];
-    const coords = `x:${xCoord} y:${objKey[xCoord]}`;
+    let coords;
+    if (objKey === table.A) {
+      coords = `A${xCoord}`;
+    } else if (objKey === table.B) {
+      coords = `B${xCoord}`;
+    } else if (objKey === table.C) {
+      coords = `C${xCoord}`;
+    } else if (objKey === table.D) {
+      coords = `D${xCoord}`;
+    } else if (objKey === table.E) {
+      coords = `E${xCoord}`;
+    } else if (objKey === table.F) {
+      coords = `F${xCoord}`;
+    } else if (objKey === table.G) {
+      coords = `G${xCoord}`;
+    } else if (objKey === table.H) {
+      coords = `H${xCoord}`;
+    } else if (objKey === table.I) {
+      coords = `I${xCoord}`;
+    } else if (objKey === table.J) {
+      coords = `J${xCoord}`;
+    }
     if (hitsAndMisses.includes(coords)) { return 1; } // disallows duplicate fires
     hitsAndMisses.push(coords);
     if (objKey[xCoord].length > 1) {
