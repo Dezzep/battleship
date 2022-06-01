@@ -5,8 +5,8 @@ body{
 #players-game-board{
   display:grid;
   grid-template-rows:  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  width:75em;
-  height:75em;
+  width:50em;
+  height:50em;
   
   
 
@@ -55,13 +55,8 @@ body{
      }
   
   }
-  .identify{
-    &:first-child{
-      background-color: red;
-      display:flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
+ .ship{
+   background-color: #00C9A7;
+ }
 }
 

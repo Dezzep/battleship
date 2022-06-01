@@ -24,17 +24,19 @@ const appendPlayerBoardToDom = () => {
   const mainDiv = document.createElement('div');
   mainDiv.id = 'players-game-board';
   const tableObject = human.board.table;
-  Object.keys(tableObject).forEach((key, v) => {
+  Object.keys(tableObject).forEach((key, value) => {
     const createDiv = document.createElement('div');
     const para = document.createElement('p');
     para.innerText = key;
     para.className = 'letters';
     createDiv.append(para);
     createDiv.className = key;
-    const row = Object.values(tableObject)[v];
+    const row = Object.values(tableObject)[value];
     row.forEach((tile) => {
       const tileDiv = document.createElement('div');
-      tileDiv.innerText = tile;
+      if (tile.length > 2) {
+        tileDiv.className = 'ship';
+      }
       createDiv.append(tileDiv);
     });
     mainDiv.append(createDiv);
