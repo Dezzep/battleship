@@ -8,10 +8,12 @@ body{
   width:50em;
   height:50em;
   
+  
+
   .numbers{
     display:flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: center;    
   }
 
   .letters,
@@ -34,6 +36,14 @@ body{
       &:hover{
         background-color: rgba(46, 69, 201, 0.350);
       }
+    }
+  }
+  .identify{
+    &:first-child{
+      background-color: red;
+      display:flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
