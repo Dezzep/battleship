@@ -5,8 +5,8 @@ body{
 #players-game-board{
   display:grid;
   grid-template-rows:  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  width:50em;
-  height:50em;
+  width:75em;
+  height:75em;
   
   
 
@@ -30,13 +30,30 @@ body{
     background-color: rgba(47, 70, 202, 0.489);
     display:grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
     div {
       border:1px solid black;
+
 
       &:hover{
         background-color: rgba(46, 69, 201, 0.350);
       }
     }
+     p, .letters{
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      padding:.5em;
+      
+
+       border-radius: 30px;
+       margin-right: auto;
+       margin-left: auto;
+
+
+    
+     }
+  
   }
   .identify{
     &:first-child{

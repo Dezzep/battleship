@@ -26,7 +26,10 @@ const appendPlayerBoardToDom = () => {
   const tableObject = human.board.table;
   Object.keys(tableObject).forEach((key, v) => {
     const createDiv = document.createElement('div');
-    createDiv.innerText = key;
+    const para = document.createElement('p');
+    para.innerText = key;
+    para.className = 'letters';
+    createDiv.append(para);
     createDiv.className = key;
     const row = Object.values(tableObject)[v];
     row.forEach((tile) => {
@@ -36,18 +39,28 @@ const appendPlayerBoardToDom = () => {
     });
     mainDiv.append(createDiv);
   });
-  // Object.values(tableObject).forEach((value) => {
-  //   for (let i = 0; i < value.length; i += 1) {
-  //     const childDiv = document.createElement('div');
-  //     childDiv.innerText = value[i];
-  //     childDiv.className = 'x-coord';
-  //     createDiv.append(childDiv);
-  //     console.log(value[i]);
-  //   }
-  //   console.log(value);
-  // });
 
   document.body.append(mainDiv);
+  const numberRow = () => {
+    const parentDiv = document.createElement('div');
+    for (let i = 0; i < 11; i += 1) {
+      const div = document.createElement('div');
+      if (i === 0) {
+        div.className = 'hidden';
+      } else {
+        div.className = 'numbers';
+        div.innerText = i;
+        div.style.color = 'black';
+        div.style.background = 'rgba(47, 70, 202, 0.49)';
+        div.style.padding = '0.5em';
+      }
+      parentDiv.className = 'numbers';
+      parentDiv.style.background = 'rgba(47, 70, 202, 0.489)';
+      parentDiv.append(div);
+    }
+    mainDiv.prepend(parentDiv);
+  };
+  numberRow();
 };
 appendPlayerBoardToDom();
 // const createPlayerBoard = (DivID) => {
