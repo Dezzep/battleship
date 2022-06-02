@@ -78,13 +78,50 @@ export default function appendPlayerBoardToDom(whosBoard, isItPlayerBoard) {
 appendPlayerBoardToDom('player-board', 'yes');
 appendPlayerBoardToDom('enemy-board');
 
+const interpolateDivColumnToObjectSelector = (column) => {
+  if (column === 'A') {
+    return human.enemyBoard.table.A;
+  }
+  if (column === 'B') {
+    return human.enemyBoard.table.B;
+  }
+  if (column === 'C') {
+    return human.enemyBoard.table.C;
+  }
+  if (column === 'D') {
+    return human.enemyBoard.table.D;
+  }
+  if (column === 'E') {
+    return human.enemyBoard.table.E;
+  }
+  if (column === 'F') {
+    return human.enemyBoard.table.F;
+  }
+  if (column === 'G') {
+    return human.enemyBoard.table.G;
+  }
+  if (column === 'H') {
+    return human.enemyBoard.table.H;
+  }
+  if (column === 'I') {
+    return human.enemyBoard.table.I;
+  }
+  if (column === 'J') {
+    return human.enemyBoard.table.J;
+  }
+  return 1;
+};
+
 const attackTilesByClicking = () => {
   document.querySelectorAll('.attackable-tile').forEach((tile) => {
     tile.addEventListener('click', () => {
-      console.log(tile.parentElement.className);
+      const column = tile.parentElement.className;
       console.log(tile.className);
       if (tile.className.includes('0')) {
-        console.log('tru fam');
+        const rowAttack = 0;
+        const columnAttack = interpolateDivColumnToObjectSelector(column);
+        console.log(human.attackEnemy(columnAttack, rowAttack));
+        
       }
     });
   });
