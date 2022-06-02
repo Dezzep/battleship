@@ -111,18 +111,31 @@ const interpolateDivColumnToObjectSelector = (column) => {
   }
   return 1;
 };
+const botMove = () => {
+  const x = human.botAttacksThePlayersBoard();
+  console.log(x.yLetter, x.x);
+};
 
 const attackTilesByClicking = () => {
   document.querySelectorAll('.attackable-tile').forEach((tile) => {
     tile.addEventListener('click', () => {
       const column = tile.parentElement.className;
-      console.log(tile.className);
-      if (tile.className.includes('0')) {
-        const rowAttack = 0;
-        const columnAttack = interpolateDivColumnToObjectSelector(column);
-        console.log(human.attackEnemy(columnAttack, rowAttack));
-        
-      }
+      const arrOfNumbs = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+      arrOfNumbs.forEach((element) => {
+        if (tile.className.includes(element)) {
+          const rowAttack = element;
+          const columnAttack = interpolateDivColumnToObjectSelector(column);
+          const attemptedAttack = human.attackEnemy(columnAttack, rowAttack);
+          if (attemptedAttack !== 1) { // if the tile was not previously clicked --> valid to click
+            if (attemptedAttack === 'hit') {
+              tile.style.background = 'red';
+            } else {
+              tile.style.background = 'blue';
+            }
+            (botMove());
+          }
+        }
+      });
     });
   });
 };
