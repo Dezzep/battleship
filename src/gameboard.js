@@ -8,6 +8,20 @@ export default function Gameboard() {
   const destroyer = ShipMaker(2, 'destroyer');
   const hitsAndMisses = [];
   const shipPieces = [carrier, battleship, submarine, cruiser, destroyer];
+  const gameOverArray = [];
+  const gameOver = () => {
+    shipPieces.forEach((element) => {
+      if (element.shipsDamage.defeated) {
+        if (!gameOverArray.includes(element)) {
+          gameOverArray.push(element);
+        }
+      }
+    });
+    if (gameOverArray.length === 5) {
+      return ('game over');
+    }
+    return 1;
+  };
   const table = {
     A: [],
     B: [],
@@ -95,6 +109,7 @@ export default function Gameboard() {
       }
       const shipsObject = searchForObjectBasedOnNameAndReturnObject(shipName);
       shipsObject.hit(hitNumber);
+      gameOver();
       return 'hit';
     }
     return 'miss';
@@ -105,5 +120,6 @@ export default function Gameboard() {
     addShipToTable,
     shipPieces,
     receiveAttack,
+    gameOver,
   };
 }

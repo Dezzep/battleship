@@ -4,6 +4,7 @@ import Gameboard from './gameboard';
 
 const player1Board = Gameboard();
 const aiBoard = Gameboard();
+let gameOver = false;
 
 // for now the ship pieces will be hardcoded in.
 player1Board.addShipToTable(player1Board.shipPieces[0], player1Board.table.A, 2);
@@ -127,9 +128,12 @@ const attackTilesByClicking = () => {
           const columnAttack = interpolateDivColumnToObjectSelector(column);
           const attemptedAttack = human.attackEnemy(columnAttack, rowAttack);
           if (attemptedAttack !== 1) { // if the tile was not previously clicked --> valid to click
-            if (attemptedAttack === 'hit') {
+            if (attemptedAttack === 'hit' && !gameOver) {
               tile.style.background = 'red';
-            } else {
+              if (human.enemyBoard.gameOver() === 'game over' || human.board.gameOver() === 'game over') {
+                gameOver = true;
+              }
+            } else if (!gameOver) {
               tile.style.background = 'blue';
             }
             (botMove());
