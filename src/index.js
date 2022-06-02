@@ -38,12 +38,14 @@ export default function appendPlayerBoardToDom(whosBoard, isItPlayerBoard) {
     createDiv.append(para);
     createDiv.className = key;
     const row = Object.values(tableObject)[value];
-    row.forEach((tile) => {
+    row.forEach((tile, i) => {
       const tileDiv = document.createElement('div');
       if (isItPlayerBoard) {
         if (tile.length > 2) {
           tileDiv.className = 'ship';
         }
+      } else {
+        tileDiv.className = `attackable-tile ${i}`;
       }
       createDiv.append(tileDiv);
     });
@@ -73,6 +75,18 @@ export default function appendPlayerBoardToDom(whosBoard, isItPlayerBoard) {
   numberRow();
 }
 
-
 appendPlayerBoardToDom('player-board', 'yes');
 appendPlayerBoardToDom('enemy-board');
+
+const attackTilesByClicking = () => {
+  document.querySelectorAll('.attackable-tile').forEach((tile) => {
+    tile.addEventListener('click', () => {
+      console.log(tile.parentElement.className);
+      console.log(tile.className);
+      if (tile.className.includes('0')) {
+        console.log('tru fam');
+      }
+    });
+  });
+};
+attackTilesByClicking();

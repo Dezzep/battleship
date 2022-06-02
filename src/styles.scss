@@ -3,6 +3,7 @@ body{
 }
 
 #players-game-board{
+  margin: 0 auto;
   display:grid;
   grid-template-rows:  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   width:50em;
