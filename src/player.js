@@ -49,7 +49,7 @@ function Player(playerBoard, opposingBoard) {
     const stringChoice = `${yLetter}:${x}`;
     console.log(stringChoice);
     // this should be rewritten to work with an array which has 100 elements in it
-    // then pops them out if they get selected -- just for effeciency reasons.
+    // then pops them out if they get selected -- just for effeciency
     if (arrayOfBotChoices.includes(stringChoice)) {
       botAttack();
     } else arrayOfBotChoices.push(stringChoice); return { y, x, yLetter };
