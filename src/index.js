@@ -5,6 +5,7 @@ import Gameboard from './gameboard';
 const player1Board = Gameboard();
 const aiBoard = Gameboard();
 let gameOver = false;
+let writeOnce = false;
 
 // for now the ship pieces will be hardcoded in.
 player1Board.addShipToTable(player1Board.shipPieces[0], player1Board.table.A, 2);
@@ -113,6 +114,15 @@ const interpolateDivColumnToObjectSelector = (column) => {
   }
   return 1;
 };
+const isGameOver = () => {
+  if (human.board.gameOver() === 33) {
+    gameOver = true;
+  }
+  if (human.enemyBoard.gameOver() === 33) {
+    gameOver = true;
+    writeOnce = true;
+  }
+};
 const a = document.querySelectorAll('.A > .players-tile');
 const b = document.querySelectorAll('.B > .players-tile');
 const c = document.querySelectorAll('.C > .players-tile');
@@ -126,36 +136,38 @@ const j = document.querySelectorAll('.J > .players-tile');
 
 const botMove = () => {
   const botsMove = human.groupedCoords;
-  console.log(botsMove.yLetter);
-  if (botsMove.yLetter === 'A') {
-    a[botsMove.xAxis].style.background = 'black';
-  }
-  if (botsMove.yLetter === 'B') {
-    b[botsMove.xAxis].style.background = 'black';
-  }
-  if (botsMove.yLetter === 'C') {
-    c[botsMove.xAxis].style.background = 'black';
-  }
-  if (botsMove.yLetter === 'D') {
-    d[botsMove.xAxis].style.background = 'black';
-  }
-  if (botsMove.yLetter === 'E') {
-    e[botsMove.xAxis].style.background = 'black';
-  }
-  if (botsMove.yLetter === 'F') {
-    f[botsMove.xAxis].style.background = 'black';
-  }
-  if (botsMove.yLetter === 'G') {
-    g[botsMove.xAxis].style.background = 'black';
-  }
-  if (botsMove.yLetter === 'H') {
-    h[botsMove.xAxis].style.background = 'black';
-  }
-  if (botsMove.yLetter === 'I') {
-    i[botsMove.xAxis].style.background = 'black';
-  }
-  if (botsMove.yLetter === 'J') {
-    j[botsMove.xAxis].style.background = 'black';
+  if (!gameOver || writeOnce === false) {
+    if (gameOver) { writeOnce = true; } // the game is considered won before this occurs
+    if (botsMove.yLetter === 'A') {
+      a[botsMove.xAxis].style.background = 'black';
+    }
+    if (botsMove.yLetter === 'B') {
+      b[botsMove.xAxis].style.background = 'black';
+    }
+    if (botsMove.yLetter === 'C') {
+      c[botsMove.xAxis].style.background = 'black';
+    }
+    if (botsMove.yLetter === 'D') {
+      d[botsMove.xAxis].style.background = 'black';
+    }
+    if (botsMove.yLetter === 'E') {
+      e[botsMove.xAxis].style.background = 'black';
+    }
+    if (botsMove.yLetter === 'F') {
+      f[botsMove.xAxis].style.background = 'black';
+    }
+    if (botsMove.yLetter === 'G') {
+      g[botsMove.xAxis].style.background = 'black';
+    }
+    if (botsMove.yLetter === 'H') {
+      h[botsMove.xAxis].style.background = 'black';
+    }
+    if (botsMove.yLetter === 'I') {
+      i[botsMove.xAxis].style.background = 'black';
+    }
+    if (botsMove.yLetter === 'J') {
+      j[botsMove.xAxis].style.background = 'black';
+    }
   }
 };
 
@@ -172,13 +184,12 @@ const attackTilesByClicking = () => {
           if (attemptedAttack !== 1) { // if the tile was not previously clicked --> valid to click
             if (attemptedAttack === 'hit' && !gameOver) {
               tile.style.background = 'red';
-              if (human.enemyBoard.gameOver() === 'game over' || human.board.gameOver() === 'game over') {
-                gameOver = true;
-              }
             } else if (!gameOver) {
               tile.style.background = 'blue';
             }
+            isGameOver();
             botMove();
+            isGameOver();
           }
         }
       });

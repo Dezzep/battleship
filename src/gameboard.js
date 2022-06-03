@@ -18,7 +18,7 @@ export default function Gameboard() {
       }
     });
     if (gameOverArray.length === 5) {
-      return ('game over');
+      return (33);
     }
     return 1;
   };

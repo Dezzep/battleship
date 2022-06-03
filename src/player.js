@@ -1,6 +1,6 @@
 let turnTrackerNumber = 0;
 let whosTurnIsIt = 0;
-let groupedCoords = {};
+const groupedCoords = {};
 function Player(playerBoard, opposingBoard) {
   const board = playerBoard;
   const enemyBoard = opposingBoard;
@@ -26,7 +26,6 @@ function Player(playerBoard, opposingBoard) {
     const splitTheSelectedElementFromArrayOfChoices = selection.split('');
     const yLetter = splitTheSelectedElementFromArrayOfChoices[0];
 
-    console.log(splitTheSelectedElementFromArrayOfChoices);
     if (splitTheSelectedElementFromArrayOfChoices.length === 3) {
       xAxis = selection[1] + selection[2];
       xAxis -= 1;
@@ -59,7 +58,7 @@ function Player(playerBoard, opposingBoard) {
     groupedCoords.y = y;
     groupedCoords.xAxis = xAxis;
     groupedCoords.yLetter = yLetter;
-    return { y, xAxis, yLetter};
+    return { y, xAxis, yLetter };
   };
   const attackEnemy = (objKey, xCoord) => {
     if (whosTurnIsIt === playersNumber) {
@@ -68,8 +67,7 @@ function Player(playerBoard, opposingBoard) {
         if (whosTurnIsIt === 0) {
           whosTurnIsIt = 1;
           botAttack();
-          enemyBoard.receiveAttack(groupedCoords.y, groupedCoords.xAxis);
-          console.log(board);
+          board.receiveAttack(groupedCoords.y, groupedCoords.xAxis);
           whosTurnIsIt = 0;
         }
         if (shotFired === 'hit') {
