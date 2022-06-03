@@ -113,50 +113,50 @@ const interpolateDivColumnToObjectSelector = (column) => {
   }
   return 1;
 };
-  const a = document.querySelectorAll('.A > .players-tile');
-  const b = document.querySelectorAll('.B > .players-tile');
-  const c = document.querySelectorAll('.C > .players-tile');
-  const d = document.querySelectorAll('.D > .players-tile');
-  const e = document.querySelectorAll('.E > .players-tile');
-  const f = document.querySelectorAll('.F > .players-tile');
-  const g = document.querySelectorAll('.G > .players-tile');
-  const h = document.querySelectorAll('.H > .players-tile');
-  const i = document.querySelectorAll('.I > .players-tile');
-  const j = document.querySelectorAll('.J > .players-tile');
+const a = document.querySelectorAll('.A > .players-tile');
+const b = document.querySelectorAll('.B > .players-tile');
+const c = document.querySelectorAll('.C > .players-tile');
+const d = document.querySelectorAll('.D > .players-tile');
+const e = document.querySelectorAll('.E > .players-tile');
+const f = document.querySelectorAll('.F > .players-tile');
+const g = document.querySelectorAll('.G > .players-tile');
+const h = document.querySelectorAll('.H > .players-tile');
+const i = document.querySelectorAll('.I > .players-tile');
+const j = document.querySelectorAll('.J > .players-tile');
 
 const botMove = () => {
-  const botsMove = human.botAttacksThePlayersBoard();
+  const botsMove = human.groupedCoords;
+  console.log(botsMove.yLetter);
   if (botsMove.yLetter === 'A') {
-    a[botsMove.x].style.background = 'black';
+    a[botsMove.xAxis].style.background = 'black';
   }
   if (botsMove.yLetter === 'B') {
-    b[botsMove.x].style.background = 'black';
+    b[botsMove.xAxis].style.background = 'black';
   }
   if (botsMove.yLetter === 'C') {
-    c[botsMove.x].style.background = 'black';
+    c[botsMove.xAxis].style.background = 'black';
   }
   if (botsMove.yLetter === 'D') {
-    d[botsMove.x].style.background = 'black';
+    d[botsMove.xAxis].style.background = 'black';
   }
   if (botsMove.yLetter === 'E') {
-    e[botsMove.x].style.background = 'black';
+    e[botsMove.xAxis].style.background = 'black';
   }
   if (botsMove.yLetter === 'F') {
-    f[botsMove.x].style.background = 'black';
+    f[botsMove.xAxis].style.background = 'black';
   }
   if (botsMove.yLetter === 'G') {
-    g[botsMove.x].style.background = 'black';
+    g[botsMove.xAxis].style.background = 'black';
   }
   if (botsMove.yLetter === 'H') {
-    h[botsMove.x].style.background = 'black';
+    h[botsMove.xAxis].style.background = 'black';
   }
   if (botsMove.yLetter === 'I') {
-    i[botsMove.x].style.background = 'black';
+    i[botsMove.xAxis].style.background = 'black';
   }
   if (botsMove.yLetter === 'J') {
-    j[botsMove.x].style.background = 'black';
+    j[botsMove.xAxis].style.background = 'black';
   }
-  console.log(botsMove.yLetter, botsMove.x);
 };
 
 const attackTilesByClicking = () => {
