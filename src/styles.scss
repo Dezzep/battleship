@@ -2,19 +2,25 @@ body{
   background-color: #3f3f3f;
 }
 
-#players-game-board{
-  margin: 0 auto;
+#players-game-board, #enemy-board{
+  margin: 10em auto;
   display:grid;
-  grid-template-rows:  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  width:50em;
-  height:50em;
+
+
+ 
+  background-color: black;
   
-  
+  h2 {
+    margin-left:2em;
+  }
 
   .numbers{
     display:flex;
     justify-content: space-around;
-    align-items: center;    
+    justify-self: flex-end;
+    width: 90%;
+    
+
   }
 
   .letters,

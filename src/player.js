@@ -1,5 +1,6 @@
 let turnTrackerNumber = 0;
 let whosTurnIsIt = 0;
+let status = {};
 const groupedCoords = {};
 function Player(playerBoard, opposingBoard) {
   const board = playerBoard;
@@ -67,7 +68,7 @@ function Player(playerBoard, opposingBoard) {
         if (whosTurnIsIt === 0) {
           whosTurnIsIt = 1;
           botAttack();
-          board.receiveAttack(groupedCoords.y, groupedCoords.xAxis);
+          status.result = board.receiveAttack(groupedCoords.y, groupedCoords.xAxis);
           whosTurnIsIt = 0;
         }
         if (shotFired === 'hit') {
@@ -85,6 +86,7 @@ function Player(playerBoard, opposingBoard) {
     attackEnemy,
     enemyBoard,
     groupedCoords,
+    status,
   };
 }
 

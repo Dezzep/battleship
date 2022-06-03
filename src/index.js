@@ -23,14 +23,25 @@ aiBoard.addShipToTable(aiBoard.shipPieces[4], aiBoard.table.I, 7);
 const human = Player(player1Board, aiBoard);
 
 export default function appendPlayerBoardToDom(whosBoard, isItPlayerBoard) {
-  const mainDiv = document.createElement('div');
-  mainDiv.id = 'players-game-board';
-  mainDiv.className = whosBoard;
   let tableObject;
+  let mainDiv;
+  let h2;
   if (isItPlayerBoard) {
     tableObject = human.board.table;
+    mainDiv = document.getElementById('players-game-board');
+    mainDiv.className = whosBoard;
+    mainDiv.id = 'players-game-board';
+    h2 = document.createElement('h2');
+    h2.innerText = 'Your Board';
+    h2.style.color = 'green';
   } else {
     tableObject = human.enemyBoard.table;
+    mainDiv = document.getElementById('enemy-board');
+    mainDiv.className = whosBoard;
+    mainDiv.id = whosBoard;
+    h2 = document.createElement('h2');
+    h2.innerText = 'Enemy Board';
+    h2.style.color = 'red';
   }
   Object.keys(tableObject).forEach((key, value) => {
     const createDiv = document.createElement('div');
@@ -73,7 +84,7 @@ export default function appendPlayerBoardToDom(whosBoard, isItPlayerBoard) {
       parentDiv.style.background = 'rgba(47, 70, 202, 0.489)';
       parentDiv.append(div);
     }
-    mainDiv.prepend(parentDiv);
+    mainDiv.prepend(h2, parentDiv);
   };
   numberRow();
 }
@@ -136,37 +147,42 @@ const j = document.querySelectorAll('.J > .players-tile');
 
 const botMove = () => {
   const botsMove = human.groupedCoords;
+  let color = 'blue';
+  if (human.status.result === 'hit') {
+    color = 'red';
+  }
+
   if (!gameOver || writeOnce === false) {
     if (gameOver) { writeOnce = true; } // the game is considered won before this occurs
     if (botsMove.yLetter === 'A') {
-      a[botsMove.xAxis].style.background = 'black';
+      a[botsMove.xAxis].style.background = color;
     }
     if (botsMove.yLetter === 'B') {
-      b[botsMove.xAxis].style.background = 'black';
+      b[botsMove.xAxis].style.background = color;
     }
     if (botsMove.yLetter === 'C') {
-      c[botsMove.xAxis].style.background = 'black';
+      c[botsMove.xAxis].style.background = color;
     }
     if (botsMove.yLetter === 'D') {
-      d[botsMove.xAxis].style.background = 'black';
+      d[botsMove.xAxis].style.background = color;
     }
     if (botsMove.yLetter === 'E') {
-      e[botsMove.xAxis].style.background = 'black';
+      e[botsMove.xAxis].style.background = color;
     }
     if (botsMove.yLetter === 'F') {
-      f[botsMove.xAxis].style.background = 'black';
+      f[botsMove.xAxis].style.background = color;
     }
     if (botsMove.yLetter === 'G') {
-      g[botsMove.xAxis].style.background = 'black';
+      g[botsMove.xAxis].style.background = color;
     }
     if (botsMove.yLetter === 'H') {
-      h[botsMove.xAxis].style.background = 'black';
+      h[botsMove.xAxis].style.background = color;
     }
     if (botsMove.yLetter === 'I') {
-      i[botsMove.xAxis].style.background = 'black';
+      i[botsMove.xAxis].style.background = color;
     }
     if (botsMove.yLetter === 'J') {
-      j[botsMove.xAxis].style.background = 'black';
+      j[botsMove.xAxis].style.background = color;
     }
   }
 };
